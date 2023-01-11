@@ -1,5 +1,4 @@
 
-
 class MemoData {
   String? title = "";
   String? content = "";
