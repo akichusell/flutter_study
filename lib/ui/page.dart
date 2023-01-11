@@ -1,29 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../data/memo_data.dart';
+import '../data/memo_database.dart';
 import 'detail_memo.dart';
 import 'listview_memo.dart';
 
 // ignore: must_be_immutable
 class AppPage extends StatefulWidget {
-  List<MemoData> dataList = <MemoData>[
-    MemoData(
-        title:"title 1",
-        content:"content 1"
-    ),
-    MemoData(
-        title: "title 2",
-        content: "content 2"
-    ),
-    MemoData(
-        title: "title 3",
-        content: "content 3"
-    ),
-    MemoData(
-        title: "title 4",
-        content: "content 4"
-    ),
-  ];
+  List<MemoData> dataList = MemoDatabase.dataList;
 
   AppPage({super.key});
 
