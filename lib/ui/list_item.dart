@@ -42,7 +42,7 @@ class ListItem extends StatelessWidget {
         ),
         child: InkWell (
           onTap: () {
-            onTap!();
+            onTap?.call();
           },
           splashColor: Colors.transparent,
           focusColor: Colors.transparent,
