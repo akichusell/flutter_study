@@ -43,6 +43,7 @@ class AppPageState extends State<AppPage> {
           width: 300,
           child: ListViewMemo(
             dataList:widget.dataList,
+            selectedIndex: selectedIndex,
             selectedCallback: (index) {
               setState(() {
                 selectedIndex = index;
