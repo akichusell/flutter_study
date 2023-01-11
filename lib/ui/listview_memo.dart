@@ -4,28 +4,15 @@ import 'package:flutter/material.dart';
 import '../data/memo_data.dart';
 import 'list_item.dart';
 
-// ignore: must_be_immutable
 class ListViewMemo extends StatefulWidget {
-  List<MemoData> dataList = <MemoData>[
-    MemoData(
-        title:"title 1",
-        content:"content 1"
-    ),
-    MemoData(
-        title: "title 2",
-        content: "content 2"
-    ),
-    MemoData(
-        title: "title 3",
-        content: "content 3"
-    ),
-    MemoData(
-        title: "title 4",
-        content: "content 4"
-    ),
-  ];
+  final List<MemoData> dataList;
+  final ValueChanged<int> selectedCallback;
 
-  ListViewMemo({super.key});
+  const ListViewMemo({
+    required this.dataList,
+    required this.selectedCallback,
+    super.key
+  });
 
   @override
   ListViewMemoState createState() => ListViewMemoState();
@@ -48,9 +35,11 @@ class ListViewMemoState extends State<ListViewMemo> {
             memoData:widget.dataList[index],
             selected: selectedIndex == index,
             onTap: () {
+              // TODO: Provider 패턴으로 변경
               setState(() {
                   selectedIndex = index;
               });
+              widget.selectedCallback(index);
             },
           );
         },

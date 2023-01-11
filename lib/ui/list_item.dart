@@ -32,12 +32,12 @@ class ListItem extends StatelessWidget {
           ],
           border: selected ?
             Border.all(
-              color: Colors.red,
-              width: 5,
+              color: Colors.blue,
+              width: 2,
             ) :
             Border.all(
               color: Colors.transparent,
-              width: 5,
+              width: 2,
             ),
         ),
         child: InkWell (
@@ -58,9 +58,9 @@ class ListItem extends StatelessWidget {
                 Text(
                   memoData.title.toString(),
                   style: const TextStyle(color: Colors.black, fontSize: 20),
-                ), // title
+                ),
                 const SizedBox(height: 5,),
-                Expanded( // content
+                Expanded(
                   child: Text(
                     memoData.content.toString(),
                     style: const TextStyle(color: Colors.grey, fontSize: 14),
