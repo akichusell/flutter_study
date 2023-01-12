@@ -52,21 +52,32 @@ class ListItem extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             height: 130,
-            child: Column(
-              children: [
-                const SizedBox(height: 5,),
-                Text(
-                  memoData.title.toString(),
-                  style: const TextStyle(color: Colors.black, fontSize: 20),
-                ),
-                const SizedBox(height: 5,),
-                Expanded(
-                  child: Text(
-                    memoData.content.toString(),
-                    style: const TextStyle(color: Colors.grey, fontSize: 14),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  const SizedBox(height: 5,),
+                  Text(
+                    memoData.title.toString(),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 5,),
+                  Expanded(
+                    child: Text(
+                      memoData.content.toString(),
+                      style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -24,6 +24,7 @@ class ListViewMemo extends StatelessWidget {
           memoData:dataList[index],
           selected: selectedIndex == index,
           onTap: () {
+            // TODO: provider 변경
             selectedCallback(index);
           },
         );

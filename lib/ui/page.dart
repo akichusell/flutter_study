@@ -16,7 +16,7 @@ class AppPage extends StatefulWidget {
 }
 
 class AppPageState extends State<AppPage> {
-  static const int kMobileMaxWidth = 600;
+  static const int kMobileMaxWidth = 400;
   int selectedIndex = 0;
 
   @override
@@ -27,6 +27,7 @@ class AppPageState extends State<AppPage> {
         dataList: widget.dataList,
         selectedIndex: selectedIndex,
         selectedCallback: (index) {
+          // TODO: provider 변경
           setState(() {
             selectedIndex = index;
           });
@@ -36,7 +37,12 @@ class AppPageState extends State<AppPage> {
                 builder: (context) {
                   return DetailMemo(
                     memoData: widget.dataList[selectedIndex],
+                    textChanged: (memoData) {
+                      // TODO: provider 변경
+                      setState(() {});
+                    },
                     showAppbar: true,
+                    key: ValueKey(selectedIndex),
                   );
                 },
               )
@@ -54,6 +60,7 @@ class AppPageState extends State<AppPage> {
               dataList: widget.dataList,
               selectedIndex: selectedIndex,
               selectedCallback: (index) {
+                // TODO: provider 변경
                 setState(() {
                   selectedIndex = index;
                 });
@@ -66,6 +73,11 @@ class AppPageState extends State<AppPage> {
             child: DetailMemo(
               memoData: widget.dataList[selectedIndex],
               showAppbar: false,
+              textChanged: (memoData) {
+                // TODO: provider 변경
+                setState(() {});
+              },
+              key: ValueKey(selectedIndex),
             ),
           ),
         ],
