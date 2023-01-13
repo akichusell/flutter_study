@@ -7,12 +7,10 @@ import 'detail_memo.dart';
 
 class ListItem extends StatelessWidget {
   final MemoData memoData;
-  final bool selected;
   final bool isMobileUI;
 
   const ListItem({
     required this.memoData,
-    required this.selected,
     required this.isMobileUI,
     super.key
   });
@@ -33,7 +31,7 @@ class ListItem extends StatelessWidget {
               offset: const Offset(0, 1),
             )
           ],
-          border: selected ?
+          border: context.watch<SelectedMemo>().selectedMemo == memoData ?
             Border.all(
               color: Colors.blue,
               width: 2,

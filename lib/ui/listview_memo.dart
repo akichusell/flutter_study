@@ -22,7 +22,6 @@ class ListViewMemo extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListItem(
           memoData:dataList[index],
-          selected: context.watch<SelectedMemo>().selectedMemo == dataList[index],
           isMobileUI: isMobileUI,
         );
       },

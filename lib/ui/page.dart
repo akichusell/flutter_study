@@ -40,7 +40,7 @@ class AppPageState extends State<AppPage> {
               isMobileUI: mobileUi
             ),
           ),
-          const VerticalDivider(width: 0,),
+          const VerticalDivider(width: 0),
           // detail
           Expanded(
             child: DetailMemo(
