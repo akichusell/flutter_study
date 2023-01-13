@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../data/memo_data.dart';
 import '../data/selected_memo.dart';
 
 class DetailMemo extends StatefulWidget {
   final bool showAppbar;
-  // final ValueChanged<MemoData> textChanged;
 
   const DetailMemo({
     required this.showAppbar,
-    // required this.textChanged,
     super.key,
   });
 
@@ -25,8 +22,6 @@ class DetailMemoState extends State<DetailMemo> {
   @override
   void initState() {
     super.initState();
-    print("seil.chu - DetailMemoState :: initState ${context.read<SelectedMemo>().selectedMemo.title}");
-
     _titleTextController.text = context.read<SelectedMemo>().selectedMemo.title;
     _titleTextController.addListener(() {
       context.read<SelectedMemo>().updateMemoTitle(_titleTextController.text);
