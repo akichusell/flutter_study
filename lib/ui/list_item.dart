@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/data/selected_memo.dart';
+import 'package:provider/provider.dart';
 
 import '../data/memo_data.dart';
+import 'detail_memo.dart';
 
 class ListItem extends StatelessWidget {
   final MemoData memoData;
   final bool selected;
-  final GestureTapCallback? onTap;
+  final bool isMobileUI;
 
   const ListItem({
     required this.memoData,
     required this.selected,
-    this.onTap,
+    required this.isMobileUI,
     super.key
   });
 
@@ -42,7 +45,21 @@ class ListItem extends StatelessWidget {
         ),
         child: InkWell (
           onTap: () {
-            onTap?.call();
+            // change selected item
+            context.read<SelectedMemo>().changeSelectedMemo(memoData);
+
+            if (isMobileUI) {
+              Navigator.push(context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DetailMemo(
+                      showAppbar: isMobileUI,
+                      key: ValueKey(context.watch<SelectedMemo>().selectedMemo.id),
+                    );
+                  },
+                )
+              );
+            }
           },
           splashColor: Colors.transparent,
           focusColor: Colors.transparent,

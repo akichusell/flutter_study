@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
+import 'package:provider/provider.dart';
 
+import 'data/selected_memo.dart';
 import 'ui/page.dart';
 
 void main() {
@@ -11,7 +13,12 @@ void main() {
   //   WidgetsFlutterBinding.ensureInitialized();
   //   setWindowMinSize(const Size(300, 600));
   // }
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) => SelectedMemo(),
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

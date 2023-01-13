@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../data/memo_data.dart';
+import '../data/selected_memo.dart';
 
 class DetailMemo extends StatefulWidget {
-  final MemoData memoData;
   final bool showAppbar;
-  final ValueChanged<MemoData> textChanged;
+  // final ValueChanged<MemoData> textChanged;
 
   const DetailMemo({
-    required this.memoData,
     required this.showAppbar,
-    required this.textChanged,
-    super.key
+    // required this.textChanged,
+    super.key,
   });
 
   @override
@@ -25,26 +25,16 @@ class DetailMemoState extends State<DetailMemo> {
   @override
   void initState() {
     super.initState();
-    print("seil.chu - DetailMemoState :: initState");
+    print("seil.chu - DetailMemoState :: initState ${context.read<SelectedMemo>().selectedMemo.title}");
 
-    _titleTextController.text = widget.memoData.title.toString();
+    _titleTextController.text = context.read<SelectedMemo>().selectedMemo.title;
     _titleTextController.addListener(() {
-      setState(() {
-        widget.memoData.title = _titleTextController.text;
-
-        // TODO: provider 변경
-        widget.textChanged(widget.memoData);
-      });
+      context.read<SelectedMemo>().updateMemoTitle(_titleTextController.text);
     });
 
-    _contentTextController.text = widget.memoData.content.toString();
+    _contentTextController.text = context.read<SelectedMemo>().selectedMemo.content;
     _contentTextController.addListener(() {
-      setState(() {
-        widget.memoData.content = _contentTextController.text;
-
-        // TODO: provider 변경
-        widget.textChanged(widget.memoData);
-      });
+      context.read<SelectedMemo>().updateMemoContent(_contentTextController.text);
     });
   }
 

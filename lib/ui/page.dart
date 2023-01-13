@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../data/memo_data.dart';
 import '../data/memo_database.dart';
+import '../data/selected_memo.dart';
 import 'detail_memo.dart';
 import 'listview_memo.dart';
 
@@ -17,7 +19,6 @@ class AppPage extends StatefulWidget {
 
 class AppPageState extends State<AppPage> {
   static const int kMobileMaxWidth = 400;
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +26,7 @@ class AppPageState extends State<AppPage> {
     if (mobileUi) {
       return ListViewMemo(
         dataList: widget.dataList,
-        selectedIndex: selectedIndex,
-        selectedCallback: (index) {
-          // TODO: provider 변경
-          setState(() {
-            selectedIndex = index;
-          });
-
-          Navigator.push(context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return DetailMemo(
-                    memoData: widget.dataList[selectedIndex],
-                    textChanged: (memoData) {
-                      // TODO: provider 변경
-                      setState(() {});
-                    },
-                    showAppbar: true,
-                    key: ValueKey(selectedIndex),
-                  );
-                },
-              )
-          );
-        },
+        isMobileUI: mobileUi
       );
     }
     else {
@@ -58,26 +37,15 @@ class AppPageState extends State<AppPage> {
             width: 300,
             child: ListViewMemo(
               dataList: widget.dataList,
-              selectedIndex: selectedIndex,
-              selectedCallback: (index) {
-                // TODO: provider 변경
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
+              isMobileUI: mobileUi
             ),
           ),
           const VerticalDivider(width: 0,),
           // detail
           Expanded(
             child: DetailMemo(
-              memoData: widget.dataList[selectedIndex],
-              showAppbar: false,
-              textChanged: (memoData) {
-                // TODO: provider 변경
-                setState(() {});
-              },
-              key: ValueKey(selectedIndex),
+              showAppbar: mobileUi,
+              key: ValueKey(context.watch<SelectedMemo>().selectedMemo.id),
             ),
           ),
         ],
