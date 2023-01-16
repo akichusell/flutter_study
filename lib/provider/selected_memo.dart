@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'memo_data.dart';
-import 'memo_database.dart';
+import '../data/memo_data.dart';
+import '../data/memo_database.dart';
 
 class SelectedMemo extends ChangeNotifier {
   MemoData selectedMemo = MemoDatabase.dataList[0];

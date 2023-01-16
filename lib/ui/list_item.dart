@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study/data/selected_memo.dart';
+import 'package:flutter_study/provider/selected_memo.dart';
 import 'package:provider/provider.dart';
 
 import '../data/memo_data.dart';
+import '../provider/mobile_layout.dart';
 import 'detail_memo.dart';
 
 class ListItem extends StatelessWidget {
   final MemoData memoData;
-  final bool isMobileUI;
 
   const ListItem({
     required this.memoData,
-    required this.isMobileUI,
     super.key
   });
 
@@ -46,12 +45,11 @@ class ListItem extends StatelessWidget {
             // change selected item
             context.read<SelectedMemo>().changeSelectedMemo(memoData);
 
-            if (isMobileUI) {
+            if (context.read<MobileLayout>().mobileLayout) {
               Navigator.push(context,
                 MaterialPageRoute(
                   builder: (context) {
                     return DetailMemo(
-                      showAppbar: isMobileUI,
                       key: ValueKey(context.watch<SelectedMemo>().selectedMemo.id),
                     );
                   },

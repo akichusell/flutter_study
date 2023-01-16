@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/provider/mobile_layout.dart';
 import 'package:provider/provider.dart';
 
-import 'data/selected_memo.dart';
+import 'provider/selected_memo.dart';
 import 'ui/page.dart';
 
 void main() {
@@ -10,8 +11,15 @@ void main() {
   //   setWindowMinSize(const Size(300, 600));
   // }
   runApp(
-    ChangeNotifierProvider(
-      create: (BuildContext context) => SelectedMemo(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => SelectedMemo(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => MobileLayout(),
+        ),
+      ],
       child: const MyApp()
     )
   );
@@ -22,6 +30,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("MyApp :: build");
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

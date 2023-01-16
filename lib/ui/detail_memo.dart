@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../data/selected_memo.dart';
+import '../provider/mobile_layout.dart';
+import '../provider/selected_memo.dart';
 
 class DetailMemo extends StatefulWidget {
-  final bool showAppbar;
-
   const DetailMemo({
-    required this.showAppbar,
     super.key,
   });
 
@@ -43,7 +41,7 @@ class DetailMemoState extends State<DetailMemo> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.showAppbar) {
+    if (context.read<MobileLayout>().mobileLayout) {
       return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.transparent,
