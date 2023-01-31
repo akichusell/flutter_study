@@ -32,6 +32,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  realm: ^0.11.0+rc
+
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
