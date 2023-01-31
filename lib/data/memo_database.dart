@@ -8,7 +8,6 @@ part 'memo_database.g.dart';
 
 @RealmModel()
 class _Memo {
-  late int id;
   late String title;
   late String content;
   late DateTime createdDate;
@@ -47,11 +46,27 @@ class MemoDatabase extends ChangeNotifier {
   }
 
   Memo createNewMemo() {
-    var memo = Memo(IdGenerator.getId(), "", "", DateTime.now());
+    var memo = Memo("제목없음", "", DateTime.now());
     realm.write(() => realm.add(memo));
 
     notifyListeners();
     return memo;
+  }
+
+  void deleteMemo(Memo memo) {
+    realm.write(() => realm.delete(memo));
+  }
+
+  void clearMemos() {
+    final path = realm.config.path;
+
+    realm.close();
+    Realm.deleteRealm(path);
+
+    notifyListeners();
+
+    // new open
+    realm = Realm(Configuration.local([Memo.schema]));
   }
 
   void updateMemoTitle(Memo memo, String title) {
@@ -63,6 +78,4 @@ class MemoDatabase extends ChangeNotifier {
     realm.write(() => memo.content = content);
     notifyListeners();
   }
-
-
 }

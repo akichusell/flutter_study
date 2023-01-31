@@ -20,7 +20,6 @@ class AppPageState extends State<AppPage> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -44,7 +43,7 @@ class AppPageState extends State<AppPage> {
         // detail
         Expanded(
           child: DetailMemo(
-            key: ValueKey(context.watch<SelectedMemo>().selectedMemo?.id ?? -1),
+            key: ValueKey(context.watch<SelectedMemo>().selectedMemo?.hashCode),
             // key: ValueKey(context.select((SelectedMemo memo) => memo.selectedMemo?.id ?? -1)),
           ),
         ),

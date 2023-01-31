@@ -8,23 +8,16 @@ part of 'memo_database.dart';
 
 class Memo extends _Memo with RealmEntity, RealmObjectBase, RealmObject {
   Memo(
-    int id,
     String title,
     String content,
     DateTime createdDate,
   ) {
-    RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'title', title);
     RealmObjectBase.set(this, 'content', content);
     RealmObjectBase.set(this, 'createdDate', createdDate);
   }
 
   Memo._();
-
-  @override
-  int get id => RealmObjectBase.get<int>(this, 'id') as int;
-  @override
-  set id(int value) => RealmObjectBase.set(this, 'id', value);
 
   @override
   String get title => RealmObjectBase.get<String>(this, 'title') as String;
@@ -55,7 +48,6 @@ class Memo extends _Memo with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Memo._);
     return const SchemaObject(ObjectType.realmObject, Memo, 'Memo', [
-      SchemaProperty('id', RealmPropertyType.int),
       SchemaProperty('title', RealmPropertyType.string),
       SchemaProperty('content', RealmPropertyType.string),
       SchemaProperty('createdDate', RealmPropertyType.timestamp),

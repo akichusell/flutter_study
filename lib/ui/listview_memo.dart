@@ -27,6 +27,15 @@ class ListViewMemo extends StatelessWidget {
           ),
           child: const Text("ADD NOTE"),
         ),
+        // ElevatedButton(
+        //   onPressed: () {
+        //     context.read<MemoDatabase>().clearMemos();
+        //   },
+        //   style: ElevatedButton.styleFrom(
+        //     minimumSize: const Size.fromHeight(50),
+        //   ),
+        //   child: const Text("DEBUG : CLEAR ALL NOTE"),
+        // ),
         Expanded(
           child: ListView.builder(
             itemCount: context.watch<MemoDatabase>().length(),

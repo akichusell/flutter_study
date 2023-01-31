@@ -50,7 +50,7 @@ class ListItem extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) {
                     return DetailMemo(
-                      key: ValueKey(context.watch<SelectedMemo>().selectedMemo?.id ?? -1),
+                      key: ValueKey(context.watch<SelectedMemo>().selectedMemo?.hashCode),
                       // key: ValueKey(context.select((SelectedMemo memo) => memo.selectedMemo?.id ?? -1)),
                     );
                   },
