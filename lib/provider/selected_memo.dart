@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../data/memo_data.dart';
-import '../data/memo_database.dart';
 
 class SelectedMemo extends ChangeNotifier {
-  MemoData selectedMemo = MemoDatabase.dataList[0];
+  MemoData? selectedMemo;
 
   void changeSelectedMemo(MemoData memo) {
     selectedMemo = memo;
@@ -12,12 +11,12 @@ class SelectedMemo extends ChangeNotifier {
   }
 
   void updateMemoTitle(String title) {
-    selectedMemo.title = title;
+    selectedMemo?.title = title;
     notifyListeners();
   }
 
   void updateMemoContent(String content) {
-    selectedMemo.content = content;
+    selectedMemo?.content = content;
     notifyListeners();
   }
 }

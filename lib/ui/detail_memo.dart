@@ -20,13 +20,12 @@ class DetailMemoState extends State<DetailMemo> {
   @override
   void initState() {
     super.initState();
-    // print("DetailMemoState :: initState ${context.read<SelectedMemo>().selectedMemo.title}");
-    _titleTextController.text = context.read<SelectedMemo>().selectedMemo.title;
+    _titleTextController.text = context.read<SelectedMemo>().selectedMemo?.title ?? "";
     _titleTextController.addListener(() {
       context.read<SelectedMemo>().updateMemoTitle(_titleTextController.text);
     });
 
-    _contentTextController.text = context.read<SelectedMemo>().selectedMemo.content;
+    _contentTextController.text = context.read<SelectedMemo>().selectedMemo?.content ?? "";
     _contentTextController.addListener(() {
       context.read<SelectedMemo>().updateMemoContent(_contentTextController.text);
     });
