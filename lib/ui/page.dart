@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../data/memo_database.dart';
 import '../provider/mobile_layout.dart';
 import '../provider/selected_memo.dart';
 import 'detail_memo.dart';
@@ -30,16 +29,16 @@ class AppPageState extends State<AppPage> {
   }
 
   Widget mobileWidget() {
-    return ListViewMemo(dataList: MemoDatabase.dataList);
+    return const ListViewMemo();
   }
 
   Widget desktopWidget() {
     return Row(
       children: [
         // list drawer
-        SizedBox(
+        const SizedBox(
           width: 300,
-          child: ListViewMemo(dataList: MemoDatabase.dataList),
+          child: ListViewMemo(),
         ),
         const VerticalDivider(width: 0),
         // detail

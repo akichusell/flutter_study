@@ -1,22 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import '../data/memo_data.dart';
+import '../data/memo_database.dart';
 
 class SelectedMemo extends ChangeNotifier {
-  MemoData? selectedMemo;
+  Memo? selectedMemo;
 
-  void changeSelectedMemo(MemoData memo) {
+  void changeSelectedMemo(Memo memo) {
     selectedMemo = memo;
-    notifyListeners();
-  }
-
-  void updateMemoTitle(String title) {
-    selectedMemo?.title = title;
-    notifyListeners();
-  }
-
-  void updateMemoContent(String content) {
-    selectedMemo?.content = content;
     notifyListeners();
   }
 }

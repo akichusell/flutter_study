@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study/provider/mobile_layout.dart';
 import 'package:provider/provider.dart';
 
+import 'data/memo_database.dart';
 import 'provider/selected_memo.dart';
 import 'ui/page.dart';
 
@@ -18,6 +19,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => MobileLayout(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => MemoDatabase(),
         ),
       ],
       child: const MyApp()
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AppPage(),
+      home: const AppPage(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../data/memo_database.dart';
 import '../provider/mobile_layout.dart';
 import '../provider/selected_memo.dart';
 
@@ -20,15 +21,19 @@ class DetailMemoState extends State<DetailMemo> {
   @override
   void initState() {
     super.initState();
-    _titleTextController.text = context.read<SelectedMemo>().selectedMemo?.title ?? "";
-    _titleTextController.addListener(() {
-      context.read<SelectedMemo>().updateMemoTitle(_titleTextController.text);
-    });
 
-    _contentTextController.text = context.read<SelectedMemo>().selectedMemo?.content ?? "";
-    _contentTextController.addListener(() {
-      context.read<SelectedMemo>().updateMemoContent(_contentTextController.text);
-    });
+    Memo? memo = context.read<SelectedMemo>().selectedMemo;
+    if (memo != null) {
+      _titleTextController.text = memo.title;
+      _titleTextController.addListener(() {
+        context.read<MemoDatabase>().updateMemoTitle(memo, _titleTextController.text);
+      });
+
+      _contentTextController.text = memo.content;
+      _contentTextController.addListener(() {
+        context.read<MemoDatabase>().updateMemoContent(memo, _contentTextController.text);
+      });
+    }
   }
 
   @override

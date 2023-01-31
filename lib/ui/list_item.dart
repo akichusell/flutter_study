@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study/provider/selected_memo.dart';
 import 'package:provider/provider.dart';
 
-import '../data/memo_data.dart';
+import '../data/memo_database.dart';
 import '../provider/mobile_layout.dart';
 import 'detail_memo.dart';
 
 class ListItem extends StatelessWidget {
-  final MemoData memoData;
+  final Memo memo;
 
   const ListItem({
-    required this.memoData,
+    required this.memo,
     super.key
   });
 
@@ -30,7 +30,7 @@ class ListItem extends StatelessWidget {
               offset: const Offset(0, 1),
             )
           ],
-          border: context.watch<SelectedMemo>().selectedMemo == memoData ?
+          border: context.watch<SelectedMemo>().selectedMemo == memo ?
             Border.all(
               color: Colors.blue,
               width: 2,
@@ -43,7 +43,7 @@ class ListItem extends StatelessWidget {
         child: InkWell (
           onTap: () {
             // change selected item
-            context.read<SelectedMemo>().changeSelectedMemo(memoData);
+            context.read<SelectedMemo>().changeSelectedMemo(memo);
 
             if (context.read<MobileLayout>().mobileLayout) {
               Navigator.push(context,
@@ -72,7 +72,7 @@ class ListItem extends StatelessWidget {
                 children: [
                   const SizedBox(height: 5,),
                   Text(
-                    memoData.title.toString(),
+                    memo.title.toString(),
                     style: const TextStyle(
                         color: Colors.black,
                         fontSize: 15,
@@ -82,7 +82,7 @@ class ListItem extends StatelessWidget {
                   const SizedBox(height: 5,),
                   Expanded(
                     child: Text(
-                      memoData.content.toString(),
+                      memo.content.toString(),
                       style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 13,
