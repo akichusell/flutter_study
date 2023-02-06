@@ -6,6 +6,8 @@ import '../provider/selected_memo.dart';
 import 'detail_memo.dart';
 import 'listview_memo.dart';
 
+import 'package:desktop_multi_window/desktop_multi_window.dart';
+
 // ignore: must_be_immutable
 class AppPage extends StatefulWidget {
   const AppPage({super.key});
@@ -44,7 +46,6 @@ class AppPageState extends State<AppPage> {
         Expanded(
           child: DetailMemo(
             key: ValueKey(context.watch<SelectedMemo>().selectedMemo?.hashCode),
-            // key: ValueKey(context.select((SelectedMemo memo) => memo.selectedMemo?.id ?? -1)),
           ),
         ),
       ],
@@ -62,6 +63,15 @@ class AppPageState extends State<AppPage> {
           context.read<MobileLayout>().updateMobileLayout(mobileUi);
         });
         return mobileUi? mobileWidget() : desktopWidget();
+      }),
+      floatingActionButton: FloatingActionButton(onPressed: () async {
+        // new window test
+        final window = await DesktopMultiWindow.createWindow();
+        window
+          ..setFrame(const Offset(0, 0) & const Size(300, 600))
+          ..center()
+          ..resizable(true)
+          ..show();
       }),
     );
   }

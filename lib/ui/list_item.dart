@@ -51,7 +51,6 @@ class ListItem extends StatelessWidget {
                   builder: (context) {
                     return DetailMemo(
                       key: ValueKey(context.watch<SelectedMemo>().selectedMemo?.hashCode),
-                      // key: ValueKey(context.select((SelectedMemo memo) => memo.selectedMemo?.id ?? -1)),
                     );
                   },
                 )
