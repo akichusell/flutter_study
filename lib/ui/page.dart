@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -65,13 +68,13 @@ class AppPageState extends State<AppPage> {
         return mobileUi? mobileWidget() : desktopWidget();
       }),
       floatingActionButton: FloatingActionButton(onPressed: () async {
-        // new window test
-        final window = await DesktopMultiWindow.createWindow();
-        window
-          ..setFrame(const Offset(0, 0) & const Size(300, 600))
-          ..center()
-          ..resizable(true)
-          ..show();
+        // new window
+        final window = await DesktopMultiWindow.createWindow("");
+        window..setFrame(const Offset(0, 0) & const Size(300, 600))..center();
+        if (Platform.isMacOS) {
+          window.resizable(true); // macOS only
+        }
+        window.show();
       }),
     );
   }
